@@ -15,10 +15,10 @@ exports.join = function(req, res){
 
 exports.processCsvs = function(req, res){
 	var form = formidable.IncomingForm();
-		console.log('fweaf')
+	
+	form.uploadDir = "./uploads";
 
 	form.parse(req, function(err, fields, files) {
-		console.log('fweaf')
 
       res.writeHead(200, {'content-type': 'text/plain'});
       res.write('received upload:\n\n');
