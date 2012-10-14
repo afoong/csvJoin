@@ -5,7 +5,8 @@
 var formidable = require('formidable'),
     util = require('util'),
     fs = require('fs'),
-    csv = require('csv');
+    csv = require('csv'),
+    mr = require('map-reduce');
 
 exports.index = function(req, res){
   res.render('index', { title: 'Home of the join CSV app', content: 'home' })
@@ -17,7 +18,7 @@ exports.join = function(req, res){
 
 
 exports.processCsvs = function(req, res){
-	processFilesAndJoin(req, res, finishedJoining);
+	processFilesAndJoin(req, res, function() {});
 };
 
 function processFilesAndJoin(req, res, last) {
@@ -27,62 +28,38 @@ function processFilesAndJoin(req, res, last) {
 	form.keepExtensions = true;
 
 	form.parse(req, function(err, fields, files) {
-		// send what we need down the callback chain
-		var context = {
-			fileNames: [],
-			last: last,
-			req: req,
-			res: res
-		};
+		
+		mr({
+			on: files,
+			map: function(emit, value, key) {
+				console.log('map called: ' + key)
+				// console.log(value)
 
-		eachFile.apply(context, [
-			files, 							// process these files
-			'f', 							// key prefix
-			1, 								// index to start with (f1, f2)
-			Object.keys(files).length + 1, 	// process stop condition
-			function(file) { 				// how to process each item
-				context.fileNames.push(file.path)
-			}, 
-			join 							// call this when done
-		]);
+				emit.next(value);
+			},
+			reduce: function(partial, curr) {
+				console.log('reduce called: ')
+				// console.log(partial)
+				// console.log(curr)
 
+				if(!partial) {
+					// base case, nothing reduced yet
+					return [curr]
+				}
+				else {
+    				partial.unshift(curr)
+    				// console.log("aftershift")
+    				// console.log(partial)
+					return partial 
+				}
+
+			},
+			done: function(err, reduced) {
+				console.log('done')
+				console.log(reduced)
+			}
+		})
+		
 	});
 }
 
-function join() {
-	this.last.apply(this)
-}
-
-function finishedJoining() {
-
-	eachFile.apply(this, [
-		this.fileNames, 					// proccess these strings
-		'', 								// array, so no prefix
-		0, 									// index to start on
-		this.fileNames.length, 			// process stop condition
-		function(name) {					// how to process each item
-			console.log('attempt delete of '+ name)
-			fs.unlink(name, function (err) {
-				if (err) throw err;
-				console.log(name)
-				console.log("delete: "+ name)
-			});
-		},
-		function() {						// call this when done
-			console.log("done")
-			this.res.send("fewafe");
-		}
-	]);
-}
-
-function eachFile(files, prefix, idx, size, action, cb) {
-	if(idx < size) {
-		var file = files[prefix+idx];
-		action(file);
-		idx++;
-		eachFile.apply(this, arguments);
-	}
-	else if(idx == size) {
-		cb.apply(this);
-	}
-}

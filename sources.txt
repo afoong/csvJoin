@@ -5,3 +5,4 @@ http://viralpatel.net/blogs/ajax-style-file-uploading-using-hidden-iframe/
 https://github.com/felixge/node-formidable
 http://docs.jquery.com/Plugins/Authoring
 http://www.senchalabs.org/connect/middleware-bodyParser.html
+https://github.com/wdavidw/node-csv-parser

@@ -9,5 +9,6 @@
     , "log4js" : "0.5.x"
     , "formidable" : "1.0.11"
     , "csv" : "0.2.x"
+    , "map-reduce" : "0.2.x"
   }
 }
