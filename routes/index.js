@@ -59,7 +59,7 @@ function finishedJoining() {
 		this.fileNames, 					// proccess these strings
 		'', 								// array, so no prefix
 		0, 									// index to start on
-		this.fileNames.length + 1, 			// process stop condition
+		this.fileNames.length, 			// process stop condition
 		function(name) {					// how to process each item
 			console.log('attempt delete of '+ name)
 			fs.unlink(name, function (err) {
@@ -69,13 +69,13 @@ function finishedJoining() {
 			});
 		},
 		function() {						// call this when done
+			console.log("done")
 			this.res.send("fewafe");
 		}
 	]);
 }
 
 function eachFile(files, prefix, idx, size, action, cb) {
-	console.log(idx)
 	if(idx < size) {
 		var file = files[prefix+idx];
 		action(file);
