@@ -1,0 +1,19 @@
+extends layout
+
+append css
+	link(rel='stylesheet', href='/css/main.css')
+
+append js
+	script(type='text/javascript', src='/js/main.js')
+
+append content
+	div#main.container-fluid
+		div.row-fluid
+			div.span12
+				h1.center= title
+		div.row-fluid
+			div.span3
+				div#leftNav.well
+					include nav/leftNav
+			div.span9
+				div#content.well!=partial('partials/'+content+'.jade')

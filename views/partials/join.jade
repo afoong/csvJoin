@@ -1,0 +1,14 @@
+h2 Lets Get Started
+div
+	form#csvForm.form-horizontal(method="POST", onsubmit='return false')
+		legend Upload CSV Files
+		div.control-group
+			label.control-label Files
+			div.controls
+				input(type="file", name="f1")
+			div.controls
+				input(type="file", name="f2")
+		div.control-group
+			div.controls
+					button#submitCsvButton.btn.btn-primary(type="submit") Join
+
