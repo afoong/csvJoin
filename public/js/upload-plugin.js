@@ -25,7 +25,7 @@
     this.upload = function() { 
     	settings.beforeSend.apply(this);
 
-	    if(settings.validate.apply(this, this.find(":file"))) {
+	    if(settings.validate.apply(this, [this.find(":file")])) {
 	    	iframeFileSubmit(this);
 	   	}
 	   	else {
