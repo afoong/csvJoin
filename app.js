@@ -6,7 +6,8 @@
 var express = require('express')
   , gzippo = require('gzippo')
   , routes = require('./routes')
-  , log4js = require('log4js');
+  , log4js = require('log4js')
+  , fileupload = require('formidable');
 
 var app = module.exports = express.createServer();
 
@@ -21,7 +22,6 @@ var viewOptions = {
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
 
@@ -30,6 +30,12 @@ app.configure(function(){
   app.use(gzippo.compress());
 
   app.set('view options', viewOptions);
+
+  app.use(express.bodyParser({ uploadDir: './uploads' }));
+
+  app.use(function(req, res, next){
+    res.render('404.jade', {title: "404 - Page Not Found", showFullNav: false, status: 404, url: req.url });
+  });
 });
 
 app.configure('development', function(){
@@ -63,6 +69,7 @@ app.helpers({
 
 app.get('/', routes.index);
 app.get('/pages/join', routes.join);
+
 app.post('/process/join.ajax', routes.processCsvs);
 
 console.log(routes)

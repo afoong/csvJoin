@@ -7,5 +7,6 @@
     , "jade": ">= 0.0.1"
     , "gzippo" : "0.1.x"
     , "log4js" : "0.5.x"
+    , "formidable" : "1.0.11"
   }
 }
