@@ -6,7 +6,7 @@
 var express = require('express')
   , gzippo = require('gzippo')
   , routes = require('./routes')
-  , processingRoutes = require('./routes/join.js')
+  , pRoutes = require('./routes/join.js')
   , log4js = require('log4js')
   , fileupload = require('formidable');
 
@@ -52,7 +52,7 @@ app.dynamicHelpers({
   thisRoute: function(req, res) {
     return req.path;
   }
-})
+});
 
 app.helpers({
   conditionalClass: function() {
@@ -64,14 +64,14 @@ app.helpers({
       return arguments[3];
     }
   }
-})
+});
 
 // Routes
-console.log(routes)
 app.get('/', routes.index);
-app.get('/pages/join', processingRoutes.join);
+app.get('/pages/join', pRoutes.join);
 
-app.post('/process/join.ajax', processingRoutes.processCsvs);
+app.post('/process/join.ajax', pRoutes.processCsvs);
+
 
 // Unhandled Exception catching
 

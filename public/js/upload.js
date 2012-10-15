@@ -11,25 +11,46 @@ $(document).ready(function() {
 
 	$('#submitCsvButton').click(function(e) {
 		e.preventDefault();
-		csvForm.upload().hide().show();
+		csvForm.upload();
 	})
+
+	$(".employeeName a").live('click', function(e) {
+		var sal = $(this).parent().data("salary")
+		salaryModal($(this).text(), sal);
+	})
+
 });
 
-function beforeSend() {
-	$('#errors').html("");
+function salaryModal(name, sals) {
+	$('#currEmployee').text(" " + name);
 
+	$('#salModal .modal-body').append(createSalaryTable(sals, ["Salary ($)", "Pay Period Start", "Pay Period End"]));
+
+
+	$('#salModal').show().modal('show')
+}
+
+function beforeSend() {
+	clearErrors();
+	$('#feedback').append(createProgressBar("uploadProgress"));
+
+	updateProgressById("uploadProgress", 10)
 	console.log('starting');
 }
 
 function success(data) {
-	var dataObj = JSON.parse(data);
-	console.log(dataObj);
+	var dataObj = data;
+	updateProgressById("uploadProgress", 75)
+	displayStats(dataObj);
+
 }
 
 function validate(files) {
 	var pass = true;
 
    	var errList = document.createElement("ul");
+
+	updateProgressById("uploadProgress", 25)
 
    	if(files.length == 2) {
 		if(files[0].value && files[1].value) {
@@ -59,6 +80,7 @@ function validate(files) {
 
 	if(!pass) {
 		$('#errors').html(errList);
+		clearFeedback();
 	}
 
 	return pass;
@@ -73,6 +95,8 @@ function error(errs) {
 }
 
 function done() {
+	updateProgressById("uploadProgress", 95)
+
 	console.log('finished');
 }
 
@@ -82,4 +106,66 @@ function createError(msg) {
 	$(errorText).text(msg).addClass("label").addClass("label-important");
 	$(error).append(errorText);
 	return error;
+}
+
+function createProgressBar(id) {
+	var progress = document.createElement("div");
+	var bar = document.createElement("div");
+	$(progress).attr("id", id).addClass("progress").addClass("progress-striped").addClass("active");
+	$(bar).addClass("bar");
+	$(progress).append(bar);
+
+	return progress;
+}
+
+function createSalaryTable(sals, headers) {
+	var tab = document.createElement("table");
+
+	$(tab).addClass('table').addClass('table-striped').addClass('table-bordered');
+
+	var heads = document.createElement("tr");
+	for(var i =0; i < headers.length; i++) {
+		var th = document.createElement("th");
+		$(th).text(headers[i]);
+		$(heads).append(th)
+	}
+
+	$(tab).append(heads);
+
+	for(var i = 0 ; i < sals.length; i++) {
+
+		var dRow = document.createElement("tr");
+
+		for(var j = 1; j < sals[i].length; j++) {
+			var td = document.createElement("td");
+			$(td).text(sals[i][j]);
+			$(dRow).append(td);
+		}
+
+		$(tab).append(dRow);
+	}
+
+	return tab;
+}
+
+function clearErrors() {
+	$('#errors').html("");
+}
+
+function clearFeedback() {
+	$('#feedback').html("");
+}
+
+function updateProgressById(id, percent) {
+	$("#"+id+ " .bar").width(percent + "%");
+}
+
+function displayStats(d) {
+
+	$('#data').html(d);
+
+	setTimeout(function() {
+
+		clearFeedback();
+	}, 1000)
 }
