@@ -65,6 +65,9 @@ The app runes on port 3000
 
     * I passed the object into the context of a jade partial for rendering, and send the rendered output to the front end
     * I stored each employee's salary data in a data attribute in the dom
+  * Please note:
+    * I assume that the employee's basic data comes from a CSV with 6 columns
+    * I assume that the employee's salary data comes from a CSV with 4 columns
 
 #### Frontend
 
