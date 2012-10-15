@@ -1,7 +1,14 @@
+
+/**
+ * jQuery ajax upload plugin
+ * uses the iframe technique
+ */
 (function( $ ){
 
+  // create the jQuery plugin
   $.fn.uploader = function( options ) {
 
+  	// if the options were not specified, give them defaults
   	var settings = $.extend( {
   		beforeSend : function() {
 	      console.log("before");
@@ -22,22 +29,30 @@
 	    }
     }, options);
 
+  	// control flow for the upload action
     this.upload = function() { 
+    	// before uploading, call before send with this object's context
     	settings.beforeSend.apply(this);
 
+    	// make sure you validate (we're looking for file inputs)
 	    if(settings.validate.apply(this, [this.find(":file")])) {
 	    	iframeFileSubmit(this);
 	   	}
 	   	else {
+	   		// validate failed, so.. error
 	   		settings.error.apply(this);
 	   	}
 
+	   	// return this for chaining
 	   	return this;
 	};
 
-    /* 
-		http://viralpatel.net/blogs/ajax-style-file-uploading-using-hidden-iframe/ 
-	*/
+    /**
+     * Andrew did not come up with this on his own
+     * he copied from the internets and modified it: 
+	 *	
+	 * http://viralpatel.net/blogs/ajax-style-file-uploading-using-hidden-iframe/ 
+	 */
     function iframeFileSubmit (form) {
 
      	// Create the iframe...
@@ -80,11 +95,13 @@
 	            	}
 	            }
 	 
+	 			// successfully got the response from the upload
 	            settings.success.apply(form, [content]);
 	 
 	            // Del the iframe...
 	            setTimeout('iframeId.parentNode.removeChild(iframeId)', 250);
 
+	            // call the done function so plugin users know when this is finished.
 	   			settings.done.apply(this);
 	        }
 	 
@@ -92,7 +109,10 @@
 	    if (iframeId.attachEvent) iframeId.attachEvent("onload", eventHandler);
 	 
 	    // Set properties of form...
+
+	    // target is where to send the response
 	    form.attr("target", "upload_iframe");
+	    // action is the url to submit to
 	    form.attr("action", options.url);
 	    form.attr("method", "post");
 	    form.attr("enctype", "multipart/form-data");
@@ -102,6 +122,7 @@
 	    form.submit();
     }
 
+    // support jQuery chaining
 	return this;
   
   };
