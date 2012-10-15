@@ -70,7 +70,7 @@ The app runes on port 3000
 
 ###### Bootstrap
 
-* I used twitter's bootstrap library
+* I used twitter's bootstrap css framework (and their javascript-modal plugin)
   * This allowed me to create a prettier UI faster. It also helped me keep a somewhat consistent dom structure.
 
 ###### DOM
