@@ -19,15 +19,11 @@ $(document).ready(function() {
 		salaryModal($(this).text(), sal);
 	})
 
+	$('#salModal').live('hide', function () {
+		clearModal();
+	})
+
 });
-
-function salaryModal(name, sals) {
-	$('#currEmployee').text(" " + name);
-
-	$('#salModal .modal-body').append(createSalaryTable(sals, ["Salary ($)", "Pay Period Start", "Pay Period End"]));
-
-	$('#salModal').show().modal('show')
-}
 
 function beforeSend() {
 	clearErrors();
@@ -90,13 +86,21 @@ function isCSV(fname) {
 }
 
 function error(errs) {
-
+	alert('There seems to be an issue. Please refresh the page and try again')
 }
 
 function done() {
 	updateProgressById("uploadProgress", 95)
 
 	console.log('finished');
+}
+
+function salaryModal(name, sals) {
+	$('#currEmployee').text(" " + name);
+
+	$('#salModal .modal-body').append(createSalaryTable(sals, ["Salary ($)", "Pay Period Start", "Pay Period End"]));
+
+	$('#salModal').show().modal('show')
 }
 
 function createError(msg) {
@@ -153,6 +157,11 @@ function clearErrors() {
 
 function clearFeedback() {
 	$('#feedback').html("");
+}
+
+function clearModal() {
+	$('#currEmployee').text("")
+	$('#salModal .modal-body').html("");
 }
 
 function updateProgressById(id, percent) {
