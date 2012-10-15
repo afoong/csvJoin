@@ -21,7 +21,7 @@ From the root app directory
 
     - node app.js
 
-The app runes on port 3000
+The app runs on port 3000
 
 ## Design and Approach
 
