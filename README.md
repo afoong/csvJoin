@@ -126,6 +126,18 @@ Things I learned while working on this project:
 * How to upload a file
 * How to fake an ajax file upload
 
+## Sources of inspriation and informatino
+
+* http://www.componentix.com/blog/9/file-uploads-using-nodejs-now-for-real
+https://github.com/visionmedia/jade/issues/510
+http://j-query.blogspot.com/2012/02/expressjs-dynamic-helpers-vs-middleware.html
+http://viralpatel.net/blogs/ajax-style-file-uploading-using-hidden-iframe/
+https://github.com/felixge/node-formidable
+http://docs.jquery.com/Plugins/Authoring
+http://www.senchalabs.org/connect/middleware-bodyParser.html
+https://github.com/wdavidw/node-csv-parser
+https://github.com/dominictarr/map-reduce
+
 ## Time taken
 
 * I estimate that this app took me about 15-17 hours to write. (including docs/comments)
@@ -134,6 +146,7 @@ Things I learned while working on this project:
     * I had not looked at a line of node in about 6 months prior to this.
     * It included a lot of research on things that I had never done before. 
       * Some of the things I researched worked, and some didn't.
+    * Also.. I may have exceeded balmer's peak at some point saturday night
 * At one point, I coded myself into a wall, and had to scrap half of the controller as well.
   * Lesson I learned from that: 
     * If code you are writing seems too complicated, there is probably a library on the internet that does what you want for you. 
