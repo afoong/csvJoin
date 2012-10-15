@@ -128,7 +128,7 @@ Things I learned while working on this project:
 
 ## Sources of inspriation and informatino
 
-* http://www.componentix.com/blog/9/file-uploads-using-nodejs-now-for-real
+http://www.componentix.com/blog/9/file-uploads-using-nodejs-now-for-real
 https://github.com/visionmedia/jade/issues/510
 http://j-query.blogspot.com/2012/02/expressjs-dynamic-helpers-vs-middleware.html
 http://viralpatel.net/blogs/ajax-style-file-uploading-using-hidden-iframe/
