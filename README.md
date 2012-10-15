@@ -127,9 +127,13 @@ Things I learned while working on this project:
 ## Time taken
 
 * I estimate that this app took me about 15-17 hours to write.
-  * Being in Pentaho loader land and bash land for the past 3 months have dulled my node.js skills. I had not looked at a line of node in about 6 months prior to this.
-  * It included a lot of research on things that I had never done before. 
-    * Some of the things I researched worked, and some didn't.
+  * Excuses =/
+    * Being in Pentaho loader land and bash land for the past 3 months have dulled my node.js skills. 
+    * I had not looked at a line of node in about 6 months prior to this.
+    * It included a lot of research on things that I had never done before. 
+      * Some of the things I researched worked, and some didn't.
 * At one point, I coded myself into a wall, and had to scrap half of the controller as well.
-  * Lesson I learned from that: If code you are writing seems too complicated, there is probably a library on the internet that does what you want for you. Unfortunately, you might also have to read more than the first 10 lines of the docs to find your answer.
+  * Lesson I learned from that: 
+    * If code you are writing seems too complicated, there is probably a library on the internet that does what you want for you. 
+    * Unfortunately, you might also have to read more than the first 10 lines of the docs to find your answer.
 
