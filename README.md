@@ -128,15 +128,15 @@ Things I learned while working on this project:
 
 ## Sources of inspriation and informatino
 
-http://www.componentix.com/blog/9/file-uploads-using-nodejs-now-for-real
-https://github.com/visionmedia/jade/issues/510
-http://j-query.blogspot.com/2012/02/expressjs-dynamic-helpers-vs-middleware.html
-http://viralpatel.net/blogs/ajax-style-file-uploading-using-hidden-iframe/
-https://github.com/felixge/node-formidable
-http://docs.jquery.com/Plugins/Authoring
-http://www.senchalabs.org/connect/middleware-bodyParser.html
-https://github.com/wdavidw/node-csv-parser
-https://github.com/dominictarr/map-reduce
+* http://www.componentix.com/blog/9/file-uploads-using-nodejs-now-for-real
+* https://github.com/visionmedia/jade/issues/510
+* http://j-query.blogspot.com/2012/02/expressjs-dynamic-helpers-vs-middleware.html
+* http://viralpatel.net/blogs/ajax-style-file-uploading-using-hidden-iframe/
+* https://github.com/felixge/node-formidable
+* http://docs.jquery.com/Plugins/Authoring
+* http://www.senchalabs.org/connect/middleware-bodyParser.html
+* https://github.com/wdavidw/node-csv-parser
+* https://github.com/dominictarr/map-reduce
 
 ## Time taken
 
