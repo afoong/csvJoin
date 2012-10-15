@@ -68,6 +68,11 @@ The app runes on port 3000
 
 #### Frontend
 
+###### Bootstrap
+
+* I used twitter's bootstrap library
+  * This allowed me to create a prettier UI faster. It also helped me keep a somewhat consistent dom structure.
+
 ###### DOM
 
 * Tables only used for tabular data
