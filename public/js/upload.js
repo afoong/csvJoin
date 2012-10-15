@@ -26,7 +26,6 @@ function salaryModal(name, sals) {
 
 	$('#salModal .modal-body').append(createSalaryTable(sals, ["Salary ($)", "Pay Period Start", "Pay Period End"]));
 
-
 	$('#salModal').show().modal('show')
 }
 
@@ -41,7 +40,7 @@ function beforeSend() {
 function success(data) {
 	var dataObj = data;
 	updateProgressById("uploadProgress", 75)
-	displayStats(dataObj);
+	displayBasicStats(dataObj);
 
 }
 
@@ -160,7 +159,7 @@ function updateProgressById(id, percent) {
 	$("#"+id+ " .bar").width(percent + "%");
 }
 
-function displayStats(d) {
+function displayBasicStats(d) {
 
 	$('#data').html(d);
 
