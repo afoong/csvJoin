@@ -108,6 +108,8 @@ The app runes on port 3000
 ## Not Features
 * No graphs :(
 * No analytics
+* There are no unit tests
+    * shame
 
 ## Limitations
 * The app may not be happy if you were to give it a super huge dataset
@@ -126,7 +128,7 @@ Things I learned while working on this project:
 
 ## Time taken
 
-* I estimate that this app took me about 15-17 hours to write.
+* I estimate that this app took me about 15-17 hours to write. (including docs/comments)
   * Excuses =/
     * Being in Pentaho loader land and bash land for the past 3 months have dulled my node.js skills. 
     * I had not looked at a line of node in about 6 months prior to this.
