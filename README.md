@@ -135,7 +135,7 @@ Things I learned while working on this project:
 * https://github.com/felixge/node-formidable
 * http://docs.jquery.com/Plugins/Authoring
 * http://www.senchalabs.org/connect/middleware-bodyParser.html
-* https://github.com/wdavidw/node-csv-parser
+* https://github.com/koles/ya-csv
 * https://github.com/dominictarr/map-reduce
 
 ## Time taken
