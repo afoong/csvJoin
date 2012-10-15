@@ -1,0 +1,26 @@
+h3 Employee Info
+div#statsDiv
+	table.table.table-bordered.table-striped
+		tr
+			th id
+			th name
+			th dob
+			th sex
+			th start date
+		each empData in data
+			tr.employeeRow
+				td=empData.e[0]
+				td.employeeName(id=empData.e[0], data-salary=empData.s)
+					a(role="button", class="btn btn-info", data-toggle="modal") #{empData.e[2]} #{empData.e[3]}
+				td=empData.e[1]
+				td=empData.e[4]
+				td=empData.e[5]
+
+div#salModal.modal(role="dialog", aria-labelledby="salLabel", aria-hidden="true", style="display:none;")
+	div.modal-header
+		button.close(type="button", data-dismiss="modal", aria-hidden="true") x
+		h3#salLabel Salary Information for
+			span#currEmployee _
+	div.modal-body 
+	div.modal-footer
+		button.btn.btn-inverse(type="button", data-dismiss="modal", aria-hidden="true") Close
