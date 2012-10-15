@@ -22,7 +22,8 @@ function beforeSend() {
 }
 
 function success(data) {
-	console.log("data: " + data);
+	var dataObj = JSON.parse(data);
+	console.log(dataObj);
 }
 
 function validate(files) {
@@ -55,8 +56,6 @@ function validate(files) {
 		pass = false;
 
    	}
-
-
 
 	if(!pass) {
 		$('#errors').html(errList);

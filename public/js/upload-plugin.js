@@ -66,17 +66,17 @@
 	            if (iframeId.contentDocument) {
 	            	if(iframeId.contentDocument) {
 
-	                	content = iframeId.contentDocument.body.innerHTML;
+	                	content = $(iframeId.contentDocument.body.innerHTML).html();
 	            	}
 	            } else if (iframeId.contentWindow) {
 	            	if(iframeId.contentWindow.document) {
 
-	                	content = iframeId.contentWindow.document.body.innerHTML;
+	                	content = $(iframeId.contentWindow.document.body.innerHTML).html();
 	            	}
 	            } else if (iframeId.document) {
 	            	if(iframeId.document) {
 
-	                	content = iframeId.document.body.innerHTML;
+	                	content = $(iframeId.document.body.innerHTML).html();
 	            	}
 	            }
 	 

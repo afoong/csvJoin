@@ -77,7 +77,8 @@ console.log(routes)
 // Unhandled Exception catching
 
 process.on('uncaughtException', function(err) {
-  console.log(err);
+  console.log(err.stack);
+  throw err;
 }); 
 
 app.listen(3000, function(){

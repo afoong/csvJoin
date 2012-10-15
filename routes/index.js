@@ -5,7 +5,7 @@
 var formidable = require('formidable'),
     util = require('util'),
     fs = require('fs'),
-    csv = require('csv'),
+    csv = require('ya-csv'),
     mr = require('map-reduce');
 
 exports.index = function(req, res){
@@ -18,48 +18,54 @@ exports.join = function(req, res){
 
 
 exports.processCsvs = function(req, res){
-	processFilesAndJoin(req, res, function() {});
+
+	processFilesAndJoin(req, res, function(joined) {
+		res.send(joined);
+	});
 };
 
 function processFilesAndJoin(req, res, last) {
 	var form = formidable.IncomingForm();
-	
-	form.uploadDir = "./uploads";
+
 	form.keepExtensions = true;
+	form.parse(req, function(err, fields, files) {});
 
-	form.parse(req, function(err, fields, files) {
-		
-		mr({
-			on: files,
-			map: function(emit, value, key) {
-				console.log('map called: ' + key)
-				// console.log(value)
+	var reader = csv.createCsvStreamReader(process.openStdin());
+	var join = {};
 
-				emit.next(value);
-			},
-			reduce: function(partial, curr) {
-				console.log('reduce called: ')
-				// console.log(partial)
-				// console.log(curr)
+	var storeData = function(data) {
+	    var pk = "a" + data[0];
+	    if(!(pk in join)) {
+	    	join[pk] = [];
+	    }
 
-				if(!partial) {
-					// base case, nothing reduced yet
-					return [curr]
-				}
-				else {
-    				partial.unshift(curr)
-    				// console.log("aftershift")
-    				// console.log(partial)
-					return partial 
-				}
+	    join[pk].push(data);
+	}
 
-			},
-			done: function(err, reduced) {
-				console.log('done')
-				console.log(reduced)
-			}
-		})
-		
+
+    reader.addListener('data', function(data) {
+	    storeData(data);
 	});
-}
+	reader.addListener('end', function() {
+		// console.log(join);
+	});
+	
+	form.onPart = function(part) {
+	    if (!part.filename) { upload_form.handlePart(part); return }
 
+		reader.addListener('err', function(err) { if(err) throw err; });
+
+	    part.on('data', function(buffer) {
+	        // Pipe incoming data into the reader.
+	        reader.parse(buffer.toString());
+	    });
+	    part.on('end', function() {});
+	}
+
+	form.on('end', function() {
+		reader.end();
+
+		last(join)
+	})
+
+}
