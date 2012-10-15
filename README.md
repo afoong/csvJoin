@@ -38,7 +38,7 @@ The app runes on port 3000
   * most of the csv processing was sent to services/joinService.js
 * Dynamic partials
   * views/upload.jade would support another route that needed the same javascript files, but not the same form-content
-    * routes/join.js routes that wish to share upload.jade can specify the content variable on call of render
+    * routes that wish to share upload.jade can specify the content variable on call of render (routes/join.js)
 
 ###### Joining two files
 
