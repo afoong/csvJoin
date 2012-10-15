@@ -6,6 +6,7 @@
 var express = require('express')
   , gzippo = require('gzippo')
   , routes = require('./routes')
+  , processingRoutes = require('./routes/join.js')
   , log4js = require('log4js')
   , fileupload = require('formidable');
 
@@ -66,13 +67,11 @@ app.helpers({
 })
 
 // Routes
-
-app.get('/', routes.index);
-app.get('/pages/join', routes.join);
-
-app.post('/process/join.ajax', routes.processCsvs);
-
 console.log(routes)
+app.get('/', routes.index);
+app.get('/pages/join', processingRoutes.join);
+
+app.post('/process/join.ajax', processingRoutes.processCsvs);
 
 // Unhandled Exception catching
 
